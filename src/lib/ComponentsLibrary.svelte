@@ -1,5 +1,6 @@
 <script lang="ts">
   import NumberInput from "./NumberInput.svelte";
+import TipSelector from "./TipSelector.svelte";
 </script>
 
 <div class="max-w-[50%] space-y-4">
@@ -32,4 +33,7 @@
       /></svg
     >
   </NumberInput>
+
+  <h2>Tip Selector</h2>
+  <TipSelector />
 </div>
