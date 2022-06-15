@@ -1,10 +1,15 @@
 <script lang="ts">
   import NumberInput from "./NumberInput.svelte";
   import TipSelector from "./TipSelector.svelte";
+  import TotalDisplay from "./TotalDisplay.svelte";
 
   let billCost: number;
   let tipValue: number;
   let peopleCount: number;
+
+  let totalValue: number = 0;
+  $: totalValue =
+    (billCost || 0) + ( billCost * (tipValue / 100) || 0);
 </script>
 
 <div class="max-w-[50%] space-y-4">
@@ -39,4 +44,10 @@
   <h2>Tip Selector</h2>
   <TipSelector bind:value={tipValue} />
   <p>Selected: {tipValue || 0}%</p>
+
+  <div class="bg-cyan-100 text-white p-4">
+    <h2 class="mb-8">Total Display</h2>
+
+    <TotalDisplay title="Total Amount" value={totalValue} />
+  </div>
 </div>
