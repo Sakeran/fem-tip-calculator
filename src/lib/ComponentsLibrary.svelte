@@ -2,16 +2,14 @@
   import NumberInput from "./NumberInput.svelte";
   import TipSelector from "./TipSelector.svelte";
 
+  let billCost: number;
   let tipValue: number;
+  let peopleCount: number;
 </script>
 
 <div class="max-w-[50%] space-y-4">
   <h2>Dollar Input</h2>
-  <NumberInput
-    label="Bill"
-    step={0.01}
-    on:newvalue={(v) => console.log(v.detail)}
-  >
+  <NumberInput bind:value={billCost} label="Bill" step={0.01}>
     <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="11" height="17"
       ><path
         fill="#9EBBBD"
@@ -19,6 +17,7 @@
       /></svg
     >
   </NumberInput>
+  <p>Bill Amount: ${billCost || 0.0}</p>
 
   <h2>People Input</h2>
   <NumberInput
@@ -26,7 +25,7 @@
     errorMessage="Can't be zero"
     min={1}
     step={1}
-    on:newvalue={(v) => console.log(v.detail)}
+    bind:value={peopleCount}
   >
     <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="13" height="16"
       ><path
@@ -35,6 +34,7 @@
       /></svg
     >
   </NumberInput>
+  <p>Number of people: {peopleCount || 0}</p>
 
   <h2>Tip Selector</h2>
   <TipSelector bind:value={tipValue} />

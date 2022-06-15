@@ -1,6 +1,8 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
 
+  export let value: number;
+
   export let label: string;
   export let step: number = 1;
   export let min: number = 0;
@@ -8,7 +10,6 @@
 
   let input: HTMLInputElement;
   let id = `number-input-${label.replaceAll(" ", "")}`;
-  let value: number = null;
   let hasErrors = false;
 
   let errorDisplay = "";
@@ -23,13 +24,8 @@
     }
   }
 
-  const dispatch = createEventDispatcher();
-
   function handleInput(e) {
     hasErrors = !input.checkValidity();
-    if (hasErrors || value === null) return;
-
-    dispatch("newvalue", value);
   }
 </script>
 
