@@ -1,6 +1,8 @@
 <script lang="ts">
   import NumberInput from "./NumberInput.svelte";
-import TipSelector from "./TipSelector.svelte";
+  import TipSelector from "./TipSelector.svelte";
+
+  let tipValue: number;
 </script>
 
 <div class="max-w-[50%] space-y-4">
@@ -35,5 +37,6 @@ import TipSelector from "./TipSelector.svelte";
   </NumberInput>
 
   <h2>Tip Selector</h2>
-  <TipSelector />
+  <TipSelector bind:value={tipValue} />
+  <p>Selected: {tipValue || 0}%</p>
 </div>
