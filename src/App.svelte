@@ -10,6 +10,15 @@
   let tipPercentage: number = null;
   let peopleCount: number = null;
 
+  function reset() {
+    totalPerPerson = 0;
+    tipPerPerson = 0;
+
+    billAmount = null;
+    tipPercentage = null;
+    peopleCount = null;
+  }
+
   $: {
     billAmount;
     peopleCount;
@@ -67,7 +76,10 @@
       <TotalDisplay title="Total" value={totalPerPerson} />
     </div>
     <button
-      disabled={false}
+      on:click={reset}
+      disabled={billAmount === null &&
+        tipPercentage === null &&
+        peopleCount === null}
       class="block w-full min-h-[3rem] rounded-[0.3125rem] text-xl text-center bg-cyan-500 text-cyan-100 hover:bg-cyan-700 focus:bg-cyan-700 active:bg-cyan-700 disabled:bg-cyan-200 disabled:hover:bg-cyan-200 disabled:focus:bg-cyan-200 disabled:active:bg-cyan-200 transition-colors lg:mt-auto"
       >RESET</button
     >
