@@ -32,6 +32,7 @@
 
   .rolling-digit {
     font-size: var(--digit-size, 1rem);
+    width: calc(var(--digit-size, 1rem) * 0.625);
 
     transform: translateY(
       calc(-1 * var(--digit-offset, 0) * var(--digit-size, 1rem))
