@@ -69,9 +69,9 @@
   </div>
 
   <div
-    class="mx-6 mb-8 pt-9 pb-6 px-6 rounded-[0.9375rem] bg-cyan-100 text-white lg:m-0 lg:py-10 lg:px-10 lg:basis-1/2 lg:flex lg:flex-col"
+    class="mx-6 mb-8 pt-9 pb-6 px-6 rounded-[0.9375rem] bg-cyan-100 text-white lg:m-0 lg:py-10 lg:px-10 lg:basis-1/2"
   >
-    <div class="space-y-5 mb-8 lg:space-y-6">
+    <div class="space-y-5 mb-8 lg:space-y-6 lg:mb-[7.625rem]">
       <TotalDisplay title="Tip Amount" value={tipPerPerson} />
       <TotalDisplay title="Total" value={totalPerPerson} />
     </div>
