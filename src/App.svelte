@@ -2,11 +2,37 @@
   import NumberInput from "./lib/NumberInput.svelte";
   import TipSelector from "./lib/TipSelector.svelte";
   import TotalDisplay from "./lib/TotalDisplay.svelte";
+
+  let totalPerPerson = 0;
+  let tipPerPerson = 0;
+
+  let billAmount: number = null;
+  let tipPercentage: number = null;
+  let peopleCount: number = null;
+
+  $: {
+    billAmount;
+    peopleCount;
+    tipPercentage;
+
+    if (peopleCount > 0) {
+      const tip = billAmount * (tipPercentage / 100);
+      tipPerPerson = tip / peopleCount;
+
+      const total = billAmount + tip;
+      totalPerPerson = total / peopleCount;
+    } else {
+      totalPerPerson = 0;
+      tipPerPerson = 0;
+    }
+  }
 </script>
 
 <div class="lg:flex l lg:gap-12 lg:p-8">
-  <div class="pt-8 px-8 mb-8 space-y-8 lg:space-y-10 lg:m-0 lg:pl-4 lg:pr-0 lg:pt-0 lg:basis-1/2" >
-    <NumberInput value={1.0} label="Bill" step={0.01}>
+  <div
+    class="pt-8 px-8 mb-8 space-y-8 lg:space-y-10 lg:m-0 lg:pl-4 lg:pr-0 lg:pt-0 lg:basis-1/2"
+  >
+    <NumberInput bind:value={billAmount} label="Bill" step={0.01}>
       <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="11" height="17"
         ><path
           fill="#9EBBBD"
@@ -15,14 +41,14 @@
       >
     </NumberInput>
 
-    <TipSelector value={50} />
+    <TipSelector bind:value={tipPercentage} />
 
     <NumberInput
       label="Number Of People"
       errorMessage="Can't be zero"
       min={1}
       step={1}
-      value={1}
+      bind:value={peopleCount}
     >
       <svg slot="icon" xmlns="http://www.w3.org/2000/svg" width="13" height="16"
         ><path
@@ -37,8 +63,8 @@
     class="mx-6 mb-8 pt-9 pb-6 px-6 rounded-[0.9375rem] bg-cyan-100 text-white lg:m-0 lg:py-10 lg:px-10 lg:basis-1/2 lg:flex lg:flex-col"
   >
     <div class="space-y-5 mb-8 lg:space-y-6">
-      <TotalDisplay title="Tip Amount" value={1349.98} />
-      <TotalDisplay title="Total" value={0} />
+      <TotalDisplay title="Tip Amount" value={tipPerPerson} />
+      <TotalDisplay title="Total" value={totalPerPerson} />
     </div>
     <button
       disabled={false}

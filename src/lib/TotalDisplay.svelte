@@ -10,6 +10,6 @@
     {title}<br /><span class="text-xs text-cyan-400">/ person</span>
   </div>
   <div class="text-cyan-500">
-    <RollingCounter value={value * 100} prefix="$" />
+    <RollingCounter value={Math.ceil(value * 100)} prefix="$" />
   </div>
 </div>
