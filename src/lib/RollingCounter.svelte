@@ -35,7 +35,7 @@
 </script>
 
 <div
-  class="flex justify-end"
+  class="flex justify-end select-none"
   style:--digit-prefix={`'${prefix || ""}`}
 >
   <div class="sr-only">{prefix +(value / 100).toFixed(2)}</div>
