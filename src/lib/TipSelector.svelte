@@ -24,12 +24,8 @@
 
     const inputValue = parseInt(e.target.value);
 
-    // Handles an edge case where deleting an invalid value from the field would un-set
-    // a selected button.
-    if (!isNaN(inputValue)) {
-      inputType = "input";
-      value = inputValue;
-    }
+    inputType = "input";
+    value = isNaN(inputValue) ? null : inputValue;
   }
 </script>
 
