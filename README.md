@@ -13,3 +13,5 @@ In particular, I needed to get more comfortable working with reactive animations
 In order to get some animation practice in, I implemented a “rolling” animation for the calculated dollar amounts: rather than immediately snapping to an updated value, the display is set up to emulate an analog counter, with each digit spinning into its new place. Svelte’s built-in ‘spring’ helper made this very easy to set up.
 
 One thing I did struggle with was the accessibility of the application. While the mockup was simple enough to make keyboard-based navigation effectively free, I also tried my best to make it usable via screen readers.  It turns out that “my best” isn’t quite enough to handle these kinds of interactive components, however. I will need to do a deeper dive into the WAI-ARIA docs (and learn to use screen readers more proficiently) before trying something like this again.
+
+A live version of this app can be found [here](https://sparkling-liger-a336a4.netlify.app/).
