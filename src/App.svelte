@@ -24,7 +24,7 @@
     peopleCount;
     tipPercentage;
 
-    if (peopleCount > 0) {
+    if (peopleCount > 0 && peopleCount === Math.round(peopleCount)) {
       const tip = billAmount * (tipPercentage / 100);
       tipPerPerson = tip / peopleCount;
 
