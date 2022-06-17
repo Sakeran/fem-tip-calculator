@@ -1,12 +1,11 @@
 <script lang="ts">
-  import { createEventDispatcher } from "svelte";
-
   export let value: number;
 
   export let label: string;
   export let step: number = 1;
   export let min: number = 0;
-  export let errorMessage: string = "Invalid Input";
+  export let errorMessage: string | ((value: number) => string) =
+    "Invalid Input";
 
   let input: HTMLInputElement;
   let id = `number-input-${label.replaceAll(" ", "")}`;
@@ -15,8 +14,11 @@
   let errorDisplay = "";
   $: {
     if (hasErrors) {
+      if (typeof errorMessage === "function") {
+        errorDisplay = errorMessage(value);
+      }
       // Use a generic error if the input is not a number
-      if (value === null) {
+      else if (value === null) {
         errorDisplay = "Enter a number";
       } else {
         errorDisplay = errorMessage;

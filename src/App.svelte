@@ -35,6 +35,14 @@
       tipPerPerson = 0;
     }
   }
+
+  function peopleErrorMessage(value: number) {
+    if (value === null) return "Enter a number";
+    if (value === 0) return "Can't be zero";
+    if (value !== Math.round(value)) return "Enter a whole number";
+
+    return "Invalid input";
+  }
 </script>
 
 <div class="lg:flex l lg:gap-12 lg:p-8">
@@ -54,7 +62,7 @@
 
     <NumberInput
       label="Number Of People"
-      errorMessage="Can't be zero"
+      errorMessage={peopleErrorMessage}
       min={1}
       step={1}
       bind:value={peopleCount}
