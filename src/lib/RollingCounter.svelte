@@ -38,15 +38,19 @@
   class="flex justify-end select-none"
   style:--digit-prefix={`'${prefix || ""}`}
 >
-  <div class="sr-only">{prefix +(value / 100).toFixed(2)}</div>
-  {#each digits as digit, i (digits.length - i - 1)}
-    {#if i === digits.length - 2}
-      <div aria-hidden="true" class="rc-prefix leading-none">.</div>
-    {/if}
-    <div aria-hidden="true" in:fly={{ x: 16 }} class:first={i == 0}>
-      <RollingDigit value={$displayValue} place={digits.length - i - 1} />
-    </div>
-  {/each}
+  <div class="rc-prefix leading-none motion-safe:sr-only">
+    {prefix + (value / 100).toFixed(2)}
+  </div>
+  <div aria-hidden="true" class="contents motion-reduce:hidden">
+    {#each digits as digit, i (digits.length - i - 1)}
+      {#if i === digits.length - 2}
+        <div aria-hidden="true" class="rc-prefix leading-none">.</div>
+      {/if}
+      <div aria-hidden="true" in:fly={{ x: 16 }} class:first={i == 0}>
+        <RollingDigit value={$displayValue} place={digits.length - i - 1} />
+      </div>
+    {/each}
+  </div>
 </div>
 
 <style>
